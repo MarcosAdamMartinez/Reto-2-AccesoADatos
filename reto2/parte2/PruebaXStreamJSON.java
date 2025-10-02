@@ -33,7 +33,7 @@ public class PruebaXStreamJSON {
 			misLibros.add(elquijote);
 			misLibros.add(elproblemadelostrescuerpos);
 		
-			String json = xstream1.toXML(elproblemadelostrescuerpos) +"\n"+ xstream1.toXML(elquijote);
+			String json = xstream1.toXML(misLibros);
 			System.out.println("JSON generado:\n" + json+"\n\n");
 		
 			bw.write(json);
@@ -42,10 +42,10 @@ public class PruebaXStreamJSON {
 			String linea;
 			System.out.println("JSON leido:");
 			while ((linea = br.readLine())!=null) {
-				System.out.println(linea);
-				Libro libro = (Libro) xstream1.fromXML(linea);
 				
-				misLibros2.add(libro);
+				System.out.println(linea);
+				misLibros2 = (List<Libro>) xstream1.fromXML(linea);
+			
 			}
 			
 			System.out.println("\nLibros como objetos leidos:\n"+misLibros2.toString().replaceAll("\\]\\[","\n"));
